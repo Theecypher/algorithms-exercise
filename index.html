@@ -9,17 +9,49 @@
   <body>
     <!-- <div id="app"></div> -->
 
-    <form novalidate>
-      <p>
-        <label for="mail">
-          <span>Please enter an email address *:</span>
-          <input type="email" id="mail" name="mail" required minlength="8" />
-          <span class="error" aria-live="polite"></span>
-        </label>
-      </p>
-      <button>Submit</button>
-    </form>
+    <div class="form">
+      <form>
+        <!-- <p>
+          <label for="mail">
+            <span>Please enter an email address:</span>
+          </label>
+          <input type="text" id="mail" name="mail" />
+          <span id="error" aria-live="polite"></span>
+        </p> -->
 
+        <p class="" >
+          <label for="">Email</label>
+          <input id="mail" type="email" />
+          <span id="error" >please enter your email</span>
+        </p>
+
+        <p class="country">
+          <label for="Country"></label>
+          <input type="text" />
+          <span></span>
+        </p>
+
+        <p class="postal-code">
+          <label for="">Postal Code</label>
+          <input type="text" />
+          <span></span>
+        </p>
+
+        <p class="Password">
+          <label for="">Password</label>
+          <input type="password" />
+          <span></span>
+        </p>
+
+        <p class="confirm-password">
+          <label for="">Confirm Password</label>
+          <input type="password" />
+          <span></span>
+        </p>
+
+        <button>Submit</button>
+      </form>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
