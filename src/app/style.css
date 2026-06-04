@@ -1,7 +1,17 @@
 body {
   font: 1em sans-serif;
-  width: 200px;
+  /* width: 200px; */
   padding: 0;
+  margin: 0 auto;
+}
+
+button {
+  border: none;
+  outline: none;
+}
+
+.form {
+  width: 400px;
   margin: 0 auto;
 }
 
@@ -57,4 +67,46 @@ input:focus.invalid {
   align-items: center;
   background-color: #990000;
   border: 5px solid red;
+}
+
+.getImg-btn {
+  padding: 10px 25px;
+  border: none;
+  outline: none;
+  background-color: cadetblue;
+  color: white;
+}
+
+.img-container {
+  margin: 20px; 
+}
+
+.img-content {
+  width: 350px;
+  height: 300px;
+  border: 2px solid #333;
+}
+
+.search-box {
+  width: 300px;
+  border: 1px solid #333;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+}
+
+.gif-image {
+  width: 300px;
+}
+
+.search-btn {
+  width: 80%;
+  padding: 15px 10px;
+  /* background-color: transparent; */
 }

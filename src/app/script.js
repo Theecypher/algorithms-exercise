@@ -1,6 +1,6 @@
 const form = document.querySelector("form");
 const email = document.getElementById("mail");
-const error = document.getElementById("error");
+const error = document.getElementById("error")
 
 const emailRegExp = /^[\w.!#$%&'*+/=?^`{|}~-]+@[a-z\d-]+(?:\.[a-z\d-]+)*$/i;
 
@@ -43,5 +43,4 @@ setEmailClass(validity);
 email.addEventListener("input", handleInput);
 
 form.addEventListener("submit", handleSubmit);
-
 
