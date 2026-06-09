@@ -8,6 +8,29 @@ import overcast from "../assets/cloudy-cloud-svgrepo-com.svg";
 import cloudyDay from "../assets/cloudy-day-weather-svgrepo-com.svg";
 
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+const months = [
+  "January",
+  "Feburary",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "Novemember",
+  "December",
+];
+
+const getDate = () => {
+  const currentDate = new Date().getDate();
+  const currentMonth = new Date().getMonth();
+  const currentDay = daysOfWeek[new Date().getDay];
+  // const currentDate = new Date().getDate();
+
+  console.log(currentDay);
+};
 
 const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
 
@@ -28,10 +51,7 @@ const displayFiveDaysForecast = () => {
     const dates = item.datetime;
     const temp = item.temp;
     const condition = item.conditions.toLowerCase();
-
     const celciusTemp = fahrenheitToCelsius(temp);
-
-    console.log(celciusTemp);
 
     if (condition.includes("rain")) {
       img = cloud1;
@@ -57,28 +77,50 @@ const displayFiveDaysForecast = () => {
   });
 };
 
-const condition = weatherData
-// conditions;
+const getBackground = (condition) => {
+  let background;
+  if (condition.includes("clear")) {
+    background = "#87CEEB";
+  } else if (condition.includes("partially cloudy")) {
+    background = "#A7C7E7";
+  } else if (condition.includes("overcast")) {
+    background = "#B0BEC5";
+  } else if (condition.includes("rain")) {
+    background = "#607D8B";
+  } else {
+    background = "#607D8B";
+  }
 
-console.log(condition);
-
-// partly-cloudy-day
-
-
-
-// if (condition.includes("clear")) {
-//   background = "#87CEEB";
-// } else if (condition.includes("partially cloudy")) {
-//   background = "#A7C7E7";
-// } else if (condition.includes("overcast")) {
-//   background = "#B0BEC5";
-// } else if (condition.includes("rain")) {
-//   background = "#607D8B";
-// }
+  return background;
+};
 
 const todaysWeather = () => {
-  const left = document.getElementsByClassName(".left");
-  console.log(left);
+  const left = document.querySelector(".left");
+
+  console.log(weatherData);
+
+  const condition = weatherData.condition.conditions;
+  const icon = weatherData.condition.icon;
+  const location = weatherData.location;
+  const date = weatherData.condition.datetime;
+
+  const todayWeatherContainer = document.createElement("div");
+  const todaysWeathercard = document.createElement("div");
+  todaysWeathercard.classList.add("todaysWeatherCard");
+  const backgroundCode = getBackground(condition);
+  todayWeatherContainer.style.background = backgroundCode;
+
+  todaysWeathercard.innerHTML = `<div class="">
+  <div class="location-date">
+  <h5 class="location">${location}</h5>
+  <p>${date}</p>
+  </div>
+            <img class="today-icon" src=" alt="" />
+            <p>5&deg;C</p>
+          </div>`;
+
+  todayWeatherContainer.appendChild(todaysWeathercard);
+  left.appendChild(todayWeatherContainer);
 };
 
 todaysWeather();

@@ -46,6 +46,25 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  color: white;
+}
+
+/* .left {
+} */
+
+.todaysWeatherCard {
+  padding: 10px;
+}
+
+.location {
+  text-transform: capitalize;
+  font-size: 20px;
+}
+
+.location-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 @media (min-width: 900px) {
@@ -64,7 +83,6 @@
     display: block;
   }
   .fore-img {
-
-  width: 70px;
-}
+    width: 70px;
+  }
 }
