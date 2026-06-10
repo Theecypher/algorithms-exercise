@@ -1,10 +1,10 @@
 const weatherApiiKey = import.meta.env.VITE_VISUAL_API_KEY;
 const FORECAST_DAYS = 5;
 
-export async function fetchWeather() {
+export async function fetchWeather(region) {
   try {
     const response = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/ankara/?key=${weatherApiiKey}`,
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${region}/?key=${weatherApiiKey}`,
     );
 
     const res = await response.json();

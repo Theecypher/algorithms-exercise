@@ -1,12 +1,22 @@
 * {
   box-sizing: border-box;
+
   margin: 0;
   padding: 0;
+}
+
+input {
+  outline: none;
+  border: none;
 }
 
 .container {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgb(8, 8, 62);
 }
 
 li {
@@ -20,6 +30,8 @@ li {
   flex-direction: column;
   gap: 10px;
   padding: 10px 15px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 .forecast-description {
   display: none;
@@ -107,6 +119,7 @@ li {
   padding: 10px;
   background-color: rgb(8, 8, 62);
   color: white;
+  border-radius: 10px;
 }
 
 .weather-item {
@@ -123,6 +136,38 @@ li {
   display: flex;
   gap: 2px;
   align-items: center;
+}
+
+.input-field {
+  width: 100%;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 10px;
+  align-items: center;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #5b5353;
+  color: white;
+  padding: 10px 0 10px 10px;
+}
+
+.input-icon {
+  width: 30px;
+}
+
+.search-input {
+  width: 80%;
+  height: 100%;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  padding-left: 20px;
+}
+
+.submit {
+  width: 30px;
+  height: 30px;
 }
 
 @media (min-width: 900px) {

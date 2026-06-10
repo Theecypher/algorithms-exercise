@@ -1,4 +1,4 @@
-import { fetchWeather, weatherData } from "./ApiService";
+import { fetchWeather } from "./ApiService";
 
 import sunSvg from "../assets/sun-svgrepo-com.svg";
 import sunBehindCloud from "../assets/sun-behind-small-cloud-svgrepo-com.svg";
@@ -10,6 +10,11 @@ import rain from "../assets/rain-svgrepo-com.svg";
 import humidityIcon from "../assets/humidity.svg";
 
 const left = document.querySelector(".left");
+const right = document.querySelector(".right");
+
+const submit = document.querySelector(".submit");
+
+const input = document.querySelector(".search-input");
 
 const daysOfWeek = [
   "Sunday",
@@ -51,45 +56,6 @@ const img = document.createElement("img");
 const sun = document.querySelector(".sun");
 const cloud = document.querySelector(".cloud");
 
-function fahrenheitToCelsius(fahrenheit) {
-  return Math.round(((fahrenheit - 32) * 5) / 9);
-}
-
-const forecastCon = document.querySelector(".forecast");
-const displayFiveDaysForecast = () => {
-  weatherData.fiveDaysForecast.map((item) => {
-    let img;
-    const content = document.createElement("div");
-    content.classList.add("forecast-content");
-    const dates = item.datetime;
-    const temp = item.temp;
-    const condition = item.conditions.toLowerCase();
-    const celciusTemp = fahrenheitToCelsius(temp);
-
-    if (condition.includes("rain")) {
-      img = cloud1;
-    } else if (condition.includes("sun")) {
-      img = sunBehindCloud;
-    } else if (condition.includes("overcast")) {
-      img = overcast;
-    } else if (condition.includes("clear")) {
-      img = sunSvg;
-    } else {
-      img = cloudyDay;
-    }
-
-    const date = daysOfWeek[new Date(dates).getDay()];
-
-    content.innerHTML = `<div class="forecast-card">
-            <h5>${date}</h5>
-            <img class="fore-img" src=${img} alt="" />
-            <p>${celciusTemp}&deg;C</p>
-          </div>`;
-
-    forecastCon.append(content);
-  });
-};
-
 const getBackground = (condition) => {
   let background;
   if (condition.includes("clear")) {
@@ -119,6 +85,14 @@ const getWeatherIcon = (condition) => {
 
   return background;
 };
+
+function fahrenheitToCelsius(fahrenheit) {
+  return Math.round(((fahrenheit - 32) * 5) / 9);
+}
+
+const forecastCon = document.querySelector(".forecast");
+
+let weatherData;
 
 const todaysWeather = () => {
   const condition = weatherData.condition.conditions;
@@ -201,10 +175,56 @@ const weatherDetails = () => {
   </div>
   `;
 
-  left.appendChild(weatherDetailCard);
+  right.appendChild(weatherDetailCard);
 };
 
-todaysWeather();
-weatherDetails();
+const displayFiveDaysForecast = () => {
+  weatherData.fiveDaysForecast.map((item) => {
+    let img;
+    const content = document.createElement("div");
+    content.classList.add("forecast-content");
+    const dates = item.datetime;
+    const temp = item.temp;
+    const condition = item.conditions.toLowerCase();
+    const celciusTemp = fahrenheitToCelsius(temp);
 
-displayFiveDaysForecast();
+    if (condition.includes("rain")) {
+      img = cloud1;
+    } else if (condition.includes("sun")) {
+      img = sunBehindCloud;
+    } else if (condition.includes("overcast")) {
+      img = overcast;
+    } else if (condition.includes("clear")) {
+      img = sunSvg;
+    } else {
+      img = cloudyDay;
+    }
+
+    const date = daysOfWeek[new Date(dates).getDay()];
+
+    content.innerHTML = `<div class="forecast-card">
+            <h5>${date}</h5>
+            <img class="fore-img" src=${img} alt="" />
+            <p>${celciusTemp}&deg;C</p>
+          </div>`;
+
+    forecastCon.append(content);
+  });
+};
+
+submit.addEventListener("click", async (e) => {
+  const value = input.value.toLowerCase().trim();
+
+  if (!value) {
+    return;
+  }
+
+  weatherData = await fetchWeather(value);
+
+  weatherDetails();
+  todaysWeather();
+  displayFiveDaysForecast();
+
+  input.value = "";
+  input.style.display = "none";
+});
