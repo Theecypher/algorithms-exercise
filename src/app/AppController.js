@@ -6,8 +6,20 @@ import sunBehindRainCloud from "../assets/sun-behind-rain-cloud-svgrepo-com.svg"
 import cloud1 from "../assets/cloud-svgrepo-com.svg";
 import overcast from "../assets/cloudy-cloud-svgrepo-com.svg";
 import cloudyDay from "../assets/cloudy-day-weather-svgrepo-com.svg";
+import rain from "../assets/rain-svgrepo-com.svg";
+import humidityIcon from "../assets/humidity.svg";
 
-const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+const left = document.querySelector(".left");
+
+const daysOfWeek = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thurday",
+  "Friday",
+  "Saturday",
+];
 const months = [
   "January",
   "Feburary",
@@ -25,11 +37,12 @@ const months = [
 
 const getDate = () => {
   const currentDate = new Date().getDate();
-  const currentMonth = new Date().getMonth();
-  const currentDay = daysOfWeek[new Date().getDay];
-  // const currentDate = new Date().getDate();
+  const currentMonth = months[new Date().getMonth()];
+  const currentDay = daysOfWeek[new Date().getDay()];
+  const currentYear = new Date().getFullYear();
 
-  console.log(currentDay);
+  const currentFullDate = `${currentDay}, ${currentMonth} ${currentDate}, ${currentYear}`;
+  return currentFullDate;
 };
 
 const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
@@ -88,41 +101,110 @@ const getBackground = (condition) => {
   } else if (condition.includes("rain")) {
     background = "#607D8B";
   } else {
-    background = "#607D8B";
+    background = "#8ab2db";
+  }
+
+  return background;
+};
+
+const getWeatherIcon = (condition) => {
+  let background;
+  if (condition.toLowerCase() === "rain") {
+    background = rain;
+  } else if (condition.includes("clear-day")) {
+    background = sunSvg;
+  } else {
+    background = sunSvg;
   }
 
   return background;
 };
 
 const todaysWeather = () => {
-  const left = document.querySelector(".left");
-
-  console.log(weatherData);
-
   const condition = weatherData.condition.conditions;
+  const temp = weatherData.condition.temp;
   const icon = weatherData.condition.icon;
   const location = weatherData.location;
-  const date = weatherData.condition.datetime;
+  const time = weatherData.condition.datetime;
+  const convertedTemp = fahrenheitToCelsius(temp);
+
+  const date = getDate();
 
   const todayWeatherContainer = document.createElement("div");
   const todaysWeathercard = document.createElement("div");
   todaysWeathercard.classList.add("todaysWeatherCard");
   const backgroundCode = getBackground(condition);
+  const weatherIcon = getWeatherIcon(icon);
   todayWeatherContainer.style.background = backgroundCode;
 
-  todaysWeathercard.innerHTML = `<div class="">
-  <div class="location-date">
-  <h5 class="location">${location}</h5>
-  <p>${date}</p>
-  </div>
-            <img class="today-icon" src=" alt="" />
-            <p>5&deg;C</p>
-          </div>`;
+  todaysWeathercard.innerHTML = `
+    <div class="weather-card">
+      <div class="location-datetime">
+        <div class="location-date">
+          <p class="location">${location}</p>
+          <p class="date">${date}</p>
+        </div>
+        <p class="time">${time}</p>
+      </div>
+
+      <div class="temp-icon">
+        <div class="temp-rain">
+          <p class="temp">${convertedTemp}&deg;C</p>
+          <div class="rain-data">
+            <p></p>
+            <p>${condition}</p>
+          </div>
+        </div>
+
+        <div>
+          <img src=${weatherIcon} alt="" class="weather-icon" />
+        </div>
+      </div>
+    </div>
+  `;
 
   todayWeatherContainer.appendChild(todaysWeathercard);
   left.appendChild(todayWeatherContainer);
 };
 
+const weatherDetails = () => {
+  const weatherDetailCard = document.createElement("div");
+  weatherDetailCard.classList.add("weather-detail-card");
+
+  console.log(weatherData);
+
+  const humidity = weatherData.condition.humidity;
+  const windspeed = weatherData.condition.windspeed;
+  const uvindex = weatherData.condition.uvindex;
+  const solarradiation = weatherData.condition.solarradiation;
+  const pressure = weatherData.condition.pressure;
+
+  weatherDetailCard.innerHTML = `
+  <div>
+    <ul class="weather-list">
+      <li class="weather-item">
+       <div class="name-icon"> 
+        <img class="detail-icon" src=${humidityIcon} alt="" />
+        <p class="detail-name">Humidity</p>
+      </div>
+      <p>${humidity}</p>
+      </li>
+
+      <li class="weather-item">
+       <div> 
+        <img class="detail-icon" src="" alt="" />
+        <p class="detail-name">Pressure</p>
+      </div>
+      <p>${pressure}</p>
+      </li>
+    </ul>
+  </div>
+  `;
+
+  left.appendChild(weatherDetailCard);
+};
+
 todaysWeather();
+weatherDetails();
 
 displayFiveDaysForecast();

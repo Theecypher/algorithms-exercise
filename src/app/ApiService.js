@@ -4,7 +4,7 @@ const FORECAST_DAYS = 5;
 export async function fetchWeather() {
   try {
     const response = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/london/?key=${weatherApiiKey}`,
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/ankara/?key=${weatherApiiKey}`,
     );
 
     const res = await response.json();

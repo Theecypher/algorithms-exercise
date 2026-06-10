@@ -9,6 +9,10 @@
   height: 100%;
 }
 
+li {
+  list-style: none;
+}
+
 .forecast-wrapper {
   background-color: rgb(8, 8, 62);
   color: white;
@@ -49,21 +53,75 @@
   color: white;
 }
 
-/* .left {
-} */
-
 .todaysWeatherCard {
   padding: 10px;
+  color: white;
 }
 
 .location {
   text-transform: capitalize;
   font-size: 20px;
+  font-weight: 600;
+}
+
+.location-datetime {
+  display: flex;
+  justify-content: space-between;
 }
 
 .location-date {
   display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  flex-direction: column;
+}
+
+.temp-icon {
+  display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.weather-card {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.temp {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.weather-icon {
+  width: 80px;
+}
+
+.left {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.weather-detail-card {
+  padding: 10px;
+  background-color: rgb(8, 8, 62);
+  color: white;
+}
+
+.weather-item {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-icon {
+  width: 20px;
+}
+
+.name-icon {
+  display: flex;
+  gap: 2px;
   align-items: center;
 }
 
