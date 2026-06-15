@@ -107,11 +107,8 @@ const todaysWeather = (weatherData) => {
   const date = getDate();
 
   const todaysWeathercard = document.querySelector(".todaysWeatherCard");
-  // const todaysWeathercard = document.createElement("div");
-  // todaysWeathercard.classList.add("todaysWeatherCard");
   const backgroundCode = getBackground(condition);
   const weatherIcon = getWeatherIcon(icon);
-  todaysWeathercard.style.background = backgroundCode;
 
   todaysWeathercard.innerHTML = `
     <div class="weather-card">
