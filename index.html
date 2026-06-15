@@ -4,25 +4,53 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>form-validation</title>
+    <title>Shus Weather Application</title>
   </head>
   <body>
-    <h1>Weather Wise!!</h1>
-
     <div class="container" id="container">
       <div class="left">
-        <div class="input-field">
-          <img class="input-icon" src="./src/assets/weather-icon.svg" alt="" />
-          <input class="search-input" type="text" />
-          <img class="submit" src="./src/assets/submit.svg" alt="" />
+        <form class="form">
+          <div class="input-field">
+            <img
+              class="input-icon"
+              src="./src/assets/weather-icon.svg"
+              alt=""
+            />
+            <input
+              class="search-input"
+              type="text"
+              placeholder="search for a location..."
+            />
+          </div>
+        </form>
+
+        <div class="todaysWeatherCard">
+          <!-- <div class="weather-card">
+            <div class="location-date">
+              <p class="location">location</p>
+              <p class="date">date</p>
+            </div>
+            <p class="time">time</p>
+          </div>
+
+          <div class="temp-icon">
+            <div class="temp-rain">
+              <p class="temp">${convertedTemp}</p>
+              <div class="rain-data">
+                <p>rain</p>
+                <p>condition</p>
+              </div>
+            </div>
+
+            <img src="" alt="" class="weather-icon" />
+          </div> -->
         </div>
       </div>
 
       <div class="right">
-        <div class="forecast-wrapper">
-          <h2 class="forecast-description">Forecast for the next five days</h2>
-          <div class="forecast"></div>
-        </div>
+        <div class="weather-detail-card"></div>
+
+        <div class="forecast-container"></div>
       </div>
     </div>
 

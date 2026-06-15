@@ -25,6 +25,3 @@ export async function fetchWeather(region) {
   }
 }
 
-export const weatherData = await fetchWeather();
-
-// export const ApiService = { fetchWeather };
