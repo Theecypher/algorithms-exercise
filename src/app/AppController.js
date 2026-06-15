@@ -80,9 +80,9 @@ const getWeatherIcon = (condition) => {
   } else if (condition.includes("clear-day")) {
     background = sunSvg;
   } else if (condition.includes("sun")) {
-    img = sunBehindCloud;
+    background = sunBehindCloud;
   } else if (condition.includes("overcast")) {
-    img = overcast;
+    background = overcast;
   } else {
     background = sunSvg;
   }
@@ -170,7 +170,6 @@ const weatherDetails = (weatherData) => {
 };
 
 const displayFiveDaysForecast = (data) => {
-  console.log(data);
   const forecostCaintainer = document.querySelector(".forecast-container");
 
   data.map((item) => {
@@ -184,8 +183,6 @@ const displayFiveDaysForecast = (data) => {
     const icon = item.conditions.icon;
     const celciusTemp = fahrenheitToCelsius(temp);
     const img = getWeatherIcon(condition);
-
-    console.log(icon);
 
     const date = daysOfWeek[new Date(dates).getDay()];
 
