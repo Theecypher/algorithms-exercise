@@ -170,13 +170,14 @@ const weatherDetails = (weatherData) => {
 };
 
 const displayFiveDaysForecast = (data) => {
-  const forecostCaintainer = document.querySelector(".forecast-container");
+  const forecastCaintainer = document.querySelector(".forecast-container");
+
+  forecastCaintainer.innerHTML = " ";
 
   data.map((item) => {
     const content = document.createElement("div");
     content.classList.add("forecast-content");
 
-    content.innerHTML = " ";
     const dates = item.datetime;
     const temp = item.temp;
     const condition = item.conditions.toLowerCase();
@@ -192,7 +193,7 @@ const displayFiveDaysForecast = (data) => {
             <p>${celciusTemp}&deg;C</p>
           </div>`;
 
-    forecostCaintainer.appendChild(content);
+    forecastCaintainer.appendChild(content);
   });
 };
 

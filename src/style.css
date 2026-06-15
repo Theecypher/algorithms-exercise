@@ -22,6 +22,7 @@ li {
   flex-direction: column;
   align-items: center;
   gap: 30px;
+  margin: 0px 20px;
 }
 
 .forecast-container {
@@ -29,10 +30,8 @@ li {
   width: 100%;
   gap: 15px;
   margin: 0 auto;
-  padding: 10px 5px;
   background-color: rgb(8, 8, 62);
   color: white;
-
   padding: 10px 15px;
   border-radius: 12px;
 }
@@ -57,23 +56,19 @@ li {
 .todaysWeatherCard {
   -webkit-box-shadow: 5px 5px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #5b5353;
+  color: white;
+  padding: 5px 20px;
 }
 
 .fore-img {
-  /* width: 50%; */
   width: 30px;
 }
 
 .forecast-card {
   display: flex;
   flex-direction: column;
-
+  width: 100%;
   gap: 20px;
-  color: white;
-}
-
-.todaysWeatherCard {
-  padding: 10px;
   color: white;
 }
 
@@ -117,9 +112,13 @@ li {
 }
 
 .left {
+  width: 100%;
   display: flex;
-  gap: 10px;
   flex-direction: column;
+}
+
+.right {
+  width: 100%;
 }
 
 .weather-detail-card {
@@ -146,6 +145,7 @@ li {
 }
 
 .form {
+  padding: 0px 20px;
   margin: 20px 0px;
   width: 100%;
 }
